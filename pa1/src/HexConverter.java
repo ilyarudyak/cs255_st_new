@@ -9,6 +9,7 @@ public class HexConverter {
 
     // change for main assignment to 11 and 200
     // change for pa2 katz to 7 and 50
+    // change for pa1 katz to n/a and 470
     public static final int NUMBER_CIPHERTEXTS = 7;
     public static final int ARRAY_LENGTH = 470;
 
