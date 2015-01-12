@@ -8,8 +8,9 @@ import java.util.Scanner;
 public class HexConverter {
 
     // change for main assignment to 11 and 200
+    // change for pa2 katz to 7 and 50
     public static final int NUMBER_CIPHERTEXTS = 7;
-    public static final int ARRAY_LENGTH = 50;
+    public static final int ARRAY_LENGTH = 470;
 
     // convert "315c" to [31, 5c]
     public static int[] hexStringToArray(String hexString) {
@@ -37,6 +38,8 @@ public class HexConverter {
         for(int i=0; i<n; i++) {
             if (i < n - 1)
                 System.out.printf("%02x, ", hexArray[i]);
+            else if (n == hexArray.length && i == n-1)
+                System.out.printf("%02x", hexArray[i]);
             else
                 System.out.printf("%02x, ... ", hexArray[i]);
         }
