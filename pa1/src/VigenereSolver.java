@@ -16,7 +16,7 @@ public class VigenereSolver {
             Scanner in = new Scanner(new File("data/vigenere"));
             String line = in.nextLine();
 //            System.out.println(line.length()/2);
-            cipherText = HexConverter.hexStringToArray(line);
+            cipherText = HexConverter.hexStringToHexArray(line);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -106,7 +106,7 @@ public class VigenereSolver {
 //        vs.printSquares();
 //        vs.guessKeyByte(6);
 
-        HexConverter.printAsciiFromHexArray(
+        HexConverter.printAsciiStringFromHexArray(
                 HexConverter.xorHexArrays(vs.enlargeKey(), vs.cipherText), 470);
     }
 }

@@ -34,7 +34,7 @@ public class ManyTimePad {
 //
 //        for (int i=1; i<=HexConverter.NUMBER_CIPHERTEXTS; i++) {
 //            System.out.print(i + ": ");
-//            HexConverter.printAsciiFromHexArray(HexConverter.xorHexArrays(
+//            HexConverter.printAsciiStringFromHexArray(HexConverter.xorHexArrays(
 //                    tp.ciphertext[i], tp.key), 150);
 //        }
         // the assignment from Katz course
@@ -52,7 +52,7 @@ public class ManyTimePad {
 
         for (int i=1; i<=HexConverter.NUMBER_CIPHERTEXTS; i++) {
             System.out.print(i + ": ");
-            HexConverter.printAsciiFromHexArray(HexConverter.xorHexArrays(
+            HexConverter.printAsciiStringFromHexArray(HexConverter.xorHexArrays(
                     tp.ciphertext[i], tp.key), 31);
         }
 

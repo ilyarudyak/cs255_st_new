@@ -11,17 +11,7 @@ public class HexConverter {
     // change for pa2 katz to 7 and 50
     // change for pa1 katz to n/a and 470
     public static final int NUMBER_CIPHERTEXTS = 7;
-    public static final int ARRAY_LENGTH = 470;
-
-    // convert "315c" to [31, 5c]
-    public static int[] hexStringToArray(String hexString) {
-
-        int[] hexArray = new int[ARRAY_LENGTH];
-        for(int i=0; i<hexString.length(); i+=2) {
-            hexArray[i/2] = Integer.parseInt(hexString.substring(i, i + 2), 16);
-        }
-        return hexArray;
-    }
+    public static final int ARRAY_LENGTH = 14;
 
     // xor two hex arrays
     public static int[] xorHexArrays(int[] hexArray1, int[] hexArray2) {
@@ -32,6 +22,28 @@ public class HexConverter {
         }
         return hexArray;
     }
+
+    // --------------- convert hex and ascii strings to hex array -------
+
+    // convert "315c" to [31, 5c]
+    public static int[] hexStringToHexArray(String hexString) {
+
+        int[] hexArray = new int[ARRAY_LENGTH];
+        for(int i=0; i<hexString.length(); i+=2) {
+            hexArray[i/2] = Integer.parseInt(hexString.substring(i, i + 2), 16);
+        }
+        return hexArray;
+    }
+
+    public static int[] asciiStringToHexArray(String asciiString) {
+
+        int[] hexArray = new int[ARRAY_LENGTH];
+        for(int i=0; i<asciiString.length(); i++)
+            hexArray[i] = (int) asciiString.charAt(i);
+        return hexArray;
+    }
+
+    // ----------------------- print functions --------------------------
 
     // print array of hex numbers as hex (not as decimals)
     public static void printHexArray(int[] hexArray, int n) {
@@ -47,26 +59,15 @@ public class HexConverter {
         System.out.print("]");
     }
 
-    public static int[][] readCiphertext(String filename) throws FileNotFoundException {
-
-        int[][] ciphertext = new int[NUMBER_CIPHERTEXTS+1][ARRAY_LENGTH];
-
-        int i = 1;
-        Scanner in = new Scanner(new File(filename));
-
-        while (in.hasNext()) {
-            String line = in.nextLine();
-            if (!line.isEmpty() && !line.contains("#")) {
-//                System.out.println(line.length()/2);
-                ciphertext[i++] = hexStringToArray(line);
-            }
+    public static void printHexStringFromHexArray(int[] hexArray, int n) {
+        for(int i=0; i<n; i++) {
+            if (i < n - 1)
+                System.out.printf("%02x", hexArray[i]);
         }
-
-        return ciphertext;
-
+        System.out.println();
     }
 
-    public static void printAsciiFromHexArray(int[] hexArray, int n) {
+    public static void printAsciiStringFromHexArray(int[] hexArray, int n) {
 
         for (int i=0; i<n; i++) {
             if (97 <= hexArray[i] && hexArray[i] <= 122)
@@ -86,15 +87,27 @@ public class HexConverter {
 
     }
 
-    public static int[] asciiStringToHexArray(String asciiString) {
+    // ----------------------- reading from file ------------------------
 
-        int[] hexArray = new int[ARRAY_LENGTH];
-        for(int i=0; i<asciiString.length(); i++)
-            hexArray[i] = (int) asciiString.charAt(i);
-        return hexArray;
+    public static int[][] readCiphertext(String filename)
+            throws FileNotFoundException {
+
+        int[][] ciphertext = new int[NUMBER_CIPHERTEXTS+1][ARRAY_LENGTH];
+
+        int i = 1;
+        Scanner in = new Scanner(new File(filename));
+
+        while (in.hasNext()) {
+            String line = in.nextLine();
+            if (!line.isEmpty() && !line.contains("#")) {
+//                System.out.println(line.length()/2);
+                ciphertext[i++] = hexStringToHexArray(line);
+            }
+        }
+
+        return ciphertext;
+
     }
-
-
 
     public static void main(String[] args) {
 
