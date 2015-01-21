@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="30989e6b-55de-4915-9f07-de8ce3756fae" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Decryptor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HexConverter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/ciphertext" />
-    </list>
+    <list default="true" id="30989e6b-55de-4915-9f07-de8ce3756fae" name="Default" comment="" />
     <ignored path="pa2.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
