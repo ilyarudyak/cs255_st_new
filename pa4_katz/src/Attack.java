@@ -21,37 +21,40 @@ public class Attack {
         a.oracle.connect();
 
         // compute tag2 for m1 || m2
-        byte[] b12 = (m1+m2).getBytes();
-        byte[] tag2 = a.oracle.mac(b12, b12.length);
-        System.out.println(a.oracle.verify(b12, b12.length, tag2));
+        byte[] tag2 = a.oracle.mac(Utility.stringToByteArray(m1+m2), (m1+m2).length());
 
 
         // compute tag for (m3 ^ tag2) || m4
-        byte[] b = new byte[32];
-        byte[] m3xortag2 = Utility.xorTwoByteArrays(m3.getBytes(), tag2);
-        byte[] m4b = m4.getBytes();
-        for (int i=0; i<b.length; i++) {
-            if (i <= 15)
-                b[i] = m3xortag2[i];
-            else
-                b[i] = m4b[i-16];
-        }
+        byte[] b = a.computeByteArray(m3, m4, tag2);
         byte[] tag = a.oracle.mac(b, b.length);
         System.out.println(a.oracle.verify(b, b.length, tag));
 
+        // verify this tag
+        System.out.println(a.oracle.verify(Utility.stringToByteArray(message_full),
+                message_full.length(), tag));
 
-        System.out.println(DatatypeConverter.printHexBinary(tag));
-        System.out.println(a.oracle.verify(message_full.getBytes(), message_full.length(), tag));
-
-
+        // print tag as hex string
+        System.out.println(Utility.byteArrayToHexString(tag));
 
         a.oracle.disconnect();
     }
 
-    public byte[] forgeTag(String text){
-        System.out.println("Forging tag for string: "+text);
+    private byte[] computeByteArray(String m3, String m4, byte[] tag2) {
 
-        // implementation of forgeTag only takes 6 lines of code, and one of them is a }  :)
-        return null;
+        byte[] b = new byte[32];
+        System.arraycopy(Utility.xorTwoByteArrays(m3.getBytes(), tag2), 0, b, 0, 16);
+        System.arraycopy(Utility.stringToByteArray(m4), 0, b, 16, 16);
+        return b;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
