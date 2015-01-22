@@ -33,7 +33,7 @@ public class Decryptor {
     public static void main(String[] args) throws Exception {
 
         Decryptor d = new Decryptor();
-        HexConverter hc = new HexConverter(3);
+        HexConverter hc = new HexConverter(4);
 //        String plaintext = d.decryptWithAes(hc.getCiphertext(), hc.getKey(),
 //                hc.getIv(), "AES/CBC/PKCS5Padding");
         String plaintext = d.decryptWithAes(hc.getCiphertext(), hc.getKey(),
