@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class HexConverter {
 
     public static final int NUMBER_CIPHERTEXTS = 7;
-    public static final int ARRAY_LENGTH = 64;
+    public static final int ARRAY_LENGTH = 8; // just for test; for PA =64;
 
     // xor two hex arrays
     public static int[] xorHexArrays(int[] hexArray1, int[] hexArray2) {
